@@ -1,0 +1,7 @@
+{
+  "name": "golightly-neo4j",
+  "version": "0.0.1",
+  "main": "index.js",
+  "author": "jjbeach <beachjoshua87@gmail.com>",
+  "license": "MIT"
+}
