@@ -3,5 +3,33 @@
   "version": "0.0.1",
   "main": "index.js",
   "author": "jjbeach <beachjoshua87@gmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "scripts": {
+    "test": "jest --config jestconfig.json",
+    "build": "tsc",
+    "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
+    "lint": "tslint -p tsconfig.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jjbeach/golightly-neo4j.git"
+  },
+  "keywords": [],
+  "bugs": {
+    "url": "https://github.com/jjbeach/golightly-neo4j/issues"
+  },
+  "homepage": "https://github.com/jjbeach/golightly-neo4j#readme",
+  "description": "",
+  "devDependencies": {
+    "@types/jest": "^25.1.1",
+    "jest": "^25.1.0",
+    "prettier": "^1.19.1",
+    "ts-jest": "^25.0.0",
+    "tslint": "^6.0.0",
+    "tslint-config-prettier": "^1.18.0",
+    "typescript": "^3.7.5"
+  },
+  "files": [
+    "lib/**/*"
+  ]
 }
