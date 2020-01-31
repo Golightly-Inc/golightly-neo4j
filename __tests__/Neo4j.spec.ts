@@ -1,7 +1,7 @@
 import { FetchMock } from "jest-fetch-mock";
 const fetchMock = fetch as FetchMock;
 
-import { Neo4j } from '../index';
+import { Neo4j } from '../src/index';
 
 describe('Neo4j', () => {
   describe('Initialization', () => {
