@@ -1,14 +1,21 @@
 {
   "name": "golightly-neo4j",
   "version": "0.0.1",
-  "main": "index.js",
+  "description": "The offical javascript client for Golightly's Neo4j server",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
   "author": "jjbeach <beachjoshua87@gmail.com>",
   "license": "MIT",
   "scripts": {
     "test": "jest --config jestconfig.json",
     "build": "tsc",
     "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
-    "lint": "tslint -p tsconfig.json"
+    "lint": "tslint -p tsconfig.json",
+    "prepare": "npm run build",
+    "prepublishOnly": "npm test && npm run lint",
+    "preversion": "npm run lint",
+    "version": "npm run format && git add -A src",
+    "postversion": "git push && git push --tags"
   },
   "repository": {
     "type": "git",
@@ -19,7 +26,6 @@
     "url": "https://github.com/jjbeach/golightly-neo4j/issues"
   },
   "homepage": "https://github.com/jjbeach/golightly-neo4j#readme",
-  "description": "",
   "devDependencies": {
     "@types/jest": "^25.1.1",
     "jest": "^25.1.0",

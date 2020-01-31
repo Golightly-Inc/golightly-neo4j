@@ -121,8 +121,52 @@ describe('Neo4j', () => {
 
         const result = await neo4j.retrieveMutualConnections(uuidOne, uuidTwo);
         expect(result).toEqual({ message: 'fake error message' });
-
       });
     });
+  })
+
+  describe('Retriveing shortest path connections b/w two users', () => {
+    describe('#retrieveShortestPathConnections', () => {
+      let neo4j: Neo4j;
+      beforeEach(() => {
+        jest.clearAllMocks();
+        neo4j = new Neo4j();
+      });
+      it('returns a message object if params are equal', async () => {
+        const result = await neo4j.retrieveShortestPathConnections('uuidOne', 'uuidOne');
+
+        expect(result).toEqual({ message: 'No connections exist for these users' })
+      });
+      it('returns an array of golightly_uuid objets on success when connections exist b/w', async () => {
+        const nodes = [
+          { golightly_uuid: '123-foo' }, 
+          { golightly_uuid: '000-ooo' }, 
+          { golightly_uuid: '001-coo' }, 
+          { golightly_uuid: '456-boo' }
+        ]
+        fetchMock.mockResponseOnce(JSON.stringify(nodes));
+        const uuidOne: string = '123-foo';
+        const uuidTwo: string = '456-boo';
+
+        const result = await neo4j.retrieveShortestPathConnections(uuidOne, uuidTwo);
+        expect(result).toEqual(nodes);
+      });
+      it('returns a message object on success when no mutual connections exist', async () => {
+        fetchMock.mockResponseOnce(JSON.stringify({ message: 'No connections exist for these users' }));
+        const uuidOne: string = '123-foo';
+        const uuidTwo: string = '457-boo';
+
+        const result = await neo4j.retrieveShortestPathConnections(uuidOne, uuidTwo);
+        expect(result).toEqual({ message: 'No connections exist for these users' });
+      });
+      it('returns a message object on failure', async () => {
+        fetchMock.mockReject(new Error('fake error message'));
+        const uuidOne: string = '123-foo';
+        const uuidTwo: string = '457-boo';
+
+        const result = await neo4j.retrieveShortestPathConnections(uuidOne, uuidTwo);
+        expect(result).toEqual({ message: 'fake error message' });
+      });
+    })
   })
 });

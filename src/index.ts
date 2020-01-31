@@ -43,12 +43,20 @@ export class Neo4j {
       return { message: 'No mutual connections exist for these users' };
     }
     const URL = `${this.baseUrl}/mutual_connections?golightly_uuid_one=${uuidOne}&golightly_uuid_two=${uuidTwo}`;
-    return await getMutualConnections(URL);
+    return await getNeo4jNodes(URL);
+  }
+
+  async retrieveShortestPathConnections(uuidOne: string, uuidTwo: string) {
+    if (uuidOne === uuidTwo) {
+      return { message: 'No connections exist for these users' };
+    }
+    const URL = `${this.baseUrl}/shortest_path?golightly_uuid_one=${uuidOne}&golightly_uuid_two=${uuidTwo}`;
+    return await getNeo4jNodes(URL);
   }
 }
 
 async function createConnectionOrReferral(url: string, usersParams: userConnectData) {
-  let result;
+  let result: Number | undefined;
   try {
     const resp = await fetch(url, {
       method: 'post',
@@ -60,14 +68,14 @@ async function createConnectionOrReferral(url: string, usersParams: userConnectD
       credentials: 'include'
     });
     const { status } = resp;
-    result = status;
+    result  = status;
   } catch (error) {
     //Log error here
   }
   return result;
 }
 
-async function getMutualConnections(url: string) {
+async function getNeo4jNodes(url: string) {
   let result: Array<Neo4jResponseObjType> | Neo4jResponseMessageType;
   try {
     const resp = await fetch(url);
