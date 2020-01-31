@@ -31,11 +31,19 @@ describe('Neo4j', () => {
         expect(expected.establishReferralUrl).toEqual(`${expected.baseUrl}/users/establish_referral`)
       });
     });
+    describe('fetchFunc', () => {
+      it('is assigned to function as defined by user', () => { 
+        const fakeAFFetch = (input: RequestInfo, init?: RequestInit | undefined) : Promise<Response> => new Promise(() => {})
+        const expected: Neo4j = new Neo4j('',fakeAFFetch);
+
+        expect(expected.fetchFunc).toEqual(fakeAFFetch);
+      })
+    });
   });
 
   describe('Creating connection or referral associations b/w two users', () => {
     let neo4j: Neo4j;
-    let usersParams: userConnectData;
+    let usersParams: UserConnectData;
     beforeEach(() => {
       jest.clearAllMocks();
       neo4j = new Neo4j();
@@ -53,7 +61,7 @@ describe('Neo4j', () => {
     describe('#createConnectionEdges()', () => {
       it('returns status 200 on success', async () => {
         fetchMock.mockResponseOnce(JSON.stringify({}));
-        
+
         const status = await neo4j.createConnectionEdges(usersParams);
         expect(fetchMock.mock.calls.length).toEqual(1);
         expect(status).toEqual(200);
