@@ -1,6 +1,6 @@
 # golightly-neo4j
 
-This is the offical javascript client for Golightly's Neo4j server. It is lightweight API exposing a few handy methods 
+This is the offical javascript client for Golightly's Neo4j server. It's a lightweight API exposing a few handy methods 
 for interacting with the golightly-neo4j-api app.
 
 ## Motivation
