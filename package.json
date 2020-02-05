@@ -1,6 +1,6 @@
 {
   "name": "golightly-neo4j",
-  "version": "0.0.3",
+  "version": "0.0.5",
   "description": "The offical javascript client for Golightly's Neo4j server",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
