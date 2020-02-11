@@ -33,4 +33,3 @@ user: {
   referred_by: string
 }
 and makes a http post request to the /create_user endpoint of our Neo4j rails server.
-
