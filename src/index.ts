@@ -25,16 +25,18 @@ declare global {
   type Neo4jResponseMessageType = {
     message: string
   }
+
+  type fetchFuncType = ((input: RequestInfo, init?: RequestInit | undefined) => Promise<Response>);
 }
 
 export class Neo4j {
-  fetchFunc: ((input: RequestInfo, init?: RequestInit | undefined) => Promise<Response>)
+  fetchFunc: fetchFuncType;
   baseUrl: string;
   establishConnectionUrl: string;
   establishReferralUrl: string;
   createNewUserUrl: string;
 
-  constructor(fetchFunc: ((input: RequestInfo, init?: RequestInit | undefined) => Promise<Response>), baseUrl?: string) {
+  constructor(fetchFunc: fetchFuncType, baseUrl?: string) {
     this.fetchFunc = fetchFunc;
     this.baseUrl = baseUrl || 'https://golightly-neo4j-api.herokuapp.com';
     this.createNewUserUrl = `${this.baseUrl}/create_user`;

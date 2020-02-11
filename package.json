@@ -1,6 +1,6 @@
 {
-  "name": "golightly-neo4j",
-  "version": "0.0.5",
+  "name": "@golightly-inc/golightly-neo4j",
+  "version": "0.0.7",
   "description": "The offical javascript client for Golightly's Neo4j server",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -19,13 +19,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jjbeach/golightly-neo4j.git"
+    "url": "git+https://github.com/Golightly-Inc/golightly-neo4j.git"
   },
   "keywords": [],
   "bugs": {
-    "url": "https://github.com/jjbeach/golightly-neo4j/issues"
+    "url": "https://github.com/Golightly-Inc/golightly-neo4j/issues"
   },
-  "homepage": "https://github.com/jjbeach/golightly-neo4j#readme",
+  "homepage": "https://github.com/Golightly-Inc/golightly-neo4j#readme",
   "devDependencies": {
     "@types/jest": "^25.1.1",
     "jest": "^25.1.0",
@@ -39,7 +39,5 @@
   "files": [
     "lib/**/*"
   ],
-  "dependencies": {
-    "cross-fetch": "^3.0.4"
-  }
+  "dependencies": {}
 }
